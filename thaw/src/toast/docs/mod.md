@@ -1,11 +1,36 @@
 # Toast
 
+> What is a "Toaster"? In user interface design, a "toast" (or "toaster") is a
+> small, non-intrusive notification that appears on the screen to provide
+> feedback to the user. For example, when you send an email, you might see a
+> small pop-up that says "Email sent successfully". That's a toast notification.
+
 <MessageBar layout=MessageBarLayout::Multiline intent=MessageBarIntent::Warning>
     <MessageBarBody>
       <h3 style="margin: 0">"Prerequisite"</h3>
       <p>
-        "If you want to use toast, you need to wrap the component where you call related methods inside ToasterProvider and use ToasterInjection::expect_context to get the API."
+        "
+        If you want to use toast, you need to wrap the component where you call
+        related methods inside ToasterProvider and use
+        `ToasterInjection::expect_context` to get the API.        
+        "
       </p>
+      <p>
+      "Example of using the <ToasterProvider> component along with a <ConfigProvider>:"
+      </p>
+      <pre><code>
+      """
+        view! {
+            <ConfigProvider dir=dir theme=theme>
+                <ToasterProvider>
+                    <LoadingBarProvider>
+                        <TheRouter />
+                    </LoadingBarProvider>
+                </ToasterProvider>
+            </ConfigProvider>
+        }
+      """
+      </code></pre>
     </MessageBarBody>
 </MessageBar>
 
