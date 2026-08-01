@@ -20,6 +20,7 @@ pub fn Tooltip<T>(
     /// The tooltip's visual appearance.
     #[prop(optional, into)]
     appearance: Signal<TooltipAppearance>,
+    #[prop(optional, into)] class: MaybeProp<String>,
     children: TypedChildren<T>,
 ) -> impl IntoView
 where
@@ -87,14 +88,19 @@ where
                 <div
                     class=class_list![
                         "thaw-tooltip-content",
-                         move || format!("thaw-tooltip-content--{}", appearance.get().as_str())
+                         move || format!("thaw-tooltip-content--{}", appearance.get().as_str()),
+                         class
                     ]
                     role="tooltip"
                     on:mouseenter=on_mouse_enter
                     on:mouseleave=on_mouse_leave
                 >
                     {move || { content.as_ref().map(|c| c.get()).unwrap_or_default() }}
-                    <div class="thaw-tooltip-content__angle" style=arrow_style node_ref=arrow_ref></div>
+                    <div
+                        class="thaw-tooltip-content__angle"
+                        style=arrow_style
+                        node_ref=arrow_ref
+                    ></div>
                 </div>
             </Follower>
         </crate::_binder::Binder>
